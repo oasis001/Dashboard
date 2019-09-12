@@ -1,0 +1,21 @@
+version: '3'
+services:
+  website:
+    container_name: barstock
+    image: pagevamp/nginx-php7-fpm:7.2
+    restart: always
+    environment:
+      - VIRTUAL_HOST=barstock.pv
+    volumes:
+      - ./:/var/www
+      - ./docker/sites/default.conf:/etc/nginx/sites-enabled/default
+    networks:
+      - pagevamp
+
+networks:
+  pagevamp:
+    external: true
+
+volumes:
+  CacheVolume:
+    external: true
